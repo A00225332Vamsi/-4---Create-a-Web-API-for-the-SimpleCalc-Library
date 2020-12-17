@@ -1,0 +1,169 @@
+    [ApiController]
+    [Route("api/Sum")]
+    public class SumController : ControllerBase
+    {
+        private readonly SimpleCalc _simpleCalc = new SimpleCalc();
+        [HttpGet]
+        public decimal GetSum([FromQuery] decimal leftNumber, [FromQuery] decimal rightNumber)
+        {
+            return _simpleCalc.OperatorSwitch("+", leftNumber, rightNumber);
+        }
+
+        [HttpPost]
+        public decimal Sum([FromForm] Variables model)
+        {
+            return _simpleCalc.OperatorSwitch("+", model.LeftNumber, model.RightNumber);
+        }
+
+        [HttpOptions]
+        public OperationDes Info()
+        {
+            return new OperationDes
+            {
+                Description = new RequestDetails
+                {
+                    Get = "This api get return sum of leftNumber & rightNumber FromQuery value.",
+                    Post = "This api get return sum of leftNumber & rightNumber FromForm value.",
+                },
+                Example = new RequestDetails
+                {
+                    Get = "5 + 5 = 10",
+                    Post = "5 + 5 = 10"
+                },
+                VariablesInfo = new RequestDetails
+                {
+                    Get = @"leftNumber & rightNumber both should be decimal",
+                    Post = @"leftNumber & rightNumber both should be decimal"
+                }
+            };
+        }
+    }
+
+
+
+ [Route("api/Multiplication")]
+    [ApiController]
+    public class MultiplicationController : ControllerBase
+    {
+        private readonly SimpleCalc _simpleCalc = new SimpleCalc();
+        [HttpGet]
+        public decimal GetMultiplication([FromQuery] decimal leftNumber, [FromQuery] decimal rightNumber)
+        {
+            return _simpleCalc.OperatorSwitch("*", leftNumber, rightNumber);
+        }
+
+        [HttpPost]
+        public decimal Multiplication([FromForm] Variables model)
+        {
+            return _simpleCalc.OperatorSwitch("*", model.LeftNumber, model.RightNumber);
+        }
+
+        [HttpOptions]
+        public OperationDes Info()
+        {
+            return new OperationDes
+            {
+                Description = new RequestDetails
+                {
+                    Get = "This api get return multiplication of leftNumber & rightNumber FromQuery value.",
+                    Post = "This api get return multiplication of leftNumber & rightNumber FromForm value.",
+                },
+                Example = new RequestDetails
+                {
+                    Get = "5 * 5 = 25",
+                    Post = "5 * 5 = 25"
+                },
+                VariablesInfo = new RequestDetails
+                {
+                    Get = @"leftNumber & rightNumber both should be decimal",
+                    Post = @"leftNumber & rightNumber both should be decimal"
+                }
+            };
+        }
+    }
+
+
+
+[Route("api/Division")]
+    [ApiController]
+    public class DivisionController : ControllerBase
+    {
+        private readonly SimpleCalc _simpleCalc = new SimpleCalc();
+        [HttpGet]
+        public decimal GetDivision([FromQuery] decimal leftNumber, [FromQuery] decimal rightNumber)
+        {
+            return _simpleCalc.OperatorSwitch("/", leftNumber, rightNumber);
+        }
+
+        [HttpPost]
+        public decimal Division([FromForm] Variables model)
+        {
+            return _simpleCalc.OperatorSwitch("/", model.LeftNumber, model.RightNumber);
+        }
+
+        [HttpOptions]
+        [Route("/info")]
+        public OperationDes Info()
+        {
+            return new OperationDes
+            {
+                Description = new RequestDetails
+                {
+                    Get = "This api get return division of leftNumber & rightNumber FromQuery value.",
+                    Post = "This api get return division of leftNumber & rightNumber FromForm value.",
+                },
+                Example = new RequestDetails
+                {
+                    Get = "5 / 5 = 1",
+                    Post = "5 / 5 = 1"
+                },
+                VariablesInfo = new RequestDetails
+                {
+                    Get = @"leftNumber & rightNumber both should be decimal",
+                    Post = @"leftNumber & rightNumber both should be decimal"
+                }
+            };
+        }
+    }
+
+
+[ApiController]
+    [Route("api/Subtraction")]
+    public class SubtractionController : ControllerBase
+    {
+        private readonly SimpleCalc _simpleCalc = new SimpleCalc();
+        [HttpGet]
+        public decimal GetSubtraction([FromQuery] decimal leftNumber, [FromQuery] decimal rightNumber)
+        {
+            return _simpleCalc.OperatorSwitch("-", leftNumber, rightNumber);
+        }
+
+        [HttpPost]
+        public decimal Subtraction([FromForm] Variables model)
+        {
+            return _simpleCalc.OperatorSwitch("-", model.LeftNumber, model.RightNumber);
+        }
+
+        [HttpOptions]
+        public OperationDes Info()
+        {
+            return new OperationDes
+            {
+                Description = new RequestDetails
+                {
+                    Get = "This api get return subtraction of leftNumber & rightNumber FromQuery value.",
+                    Post = "This api get return subtraction of leftNumber & rightNumber FromForm value.",
+                },
+                Example = new RequestDetails
+                {
+                    Get = "5 - 5 = 0",
+                    Post = "5 - 5 = 0"
+                },
+                VariablesInfo = new RequestDetails
+                {
+                    Get = @"leftNumber & rightNumber both should be decimal",
+                    Post = @"leftNumber & rightNumber both should be decimal"
+                }
+            };
+        }
+    }
